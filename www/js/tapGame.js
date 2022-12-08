@@ -38,7 +38,7 @@ function startGame() {
 
 // 【mBaaS】データの保存
 function saveScore(name, score) {
-    // **********【問題１】名前とスコアを保存しよう！**********
+    
     // 保存先クラスを作成
     var GameScore = ncmb.DataStore("GameScore");
     // クラスインスタンスを生成
@@ -67,7 +67,7 @@ function saveScore(name, score) {
 
 
 
-    // ********************************************************
+    
 }
 
 // タイマー
