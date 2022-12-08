@@ -7,9 +7,9 @@
 //
 
 
-    // APIキーの設定
-    var APPLICATION_KEY ="f59d4f80a5c429f58c857317905a69b0ad1d814db73c08fda0b9cb2308df9146";
-    var CLIENT_KEY ="9dd8939494a3b7a53cd13819b16569fa72fb7b9ecd6287f42999482b24b2fded";
+// APIキーの設定
+var APPLICATION_KEY = "f59d4f80a5c429f58c857317905a69b0ad1d814db73c08fda0b9cb2308df9146";
+var CLIENT_KEY = "9dd8939494a3b7a53cd13819b16569fa72fb7b9ecd6287f42999482b24b2fded";
 
 
 // mBaaSの初期化
@@ -26,7 +26,7 @@ function startGame() {
     // ボタンの無効化
     document.gameForm.start.disabled = true;
     document.gameForm.ranking.disabled = true;
-    
+
     // タップカウンターリセット
     this.counter = 0;
     $("#list-page strong").html(String(0));
@@ -37,28 +37,45 @@ function startGame() {
 }
 
 // 【mBaaS】データの保存
-function saveScore (name, score) {
+function saveScore(name, score) {
     // **********【問題１】名前とスコアを保存しよう！**********
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    // 保存先クラスを作成
+    var GameScore = ncmb.DataStore("GameScore");
+    // クラスインスタンスを生成
+    var gameScore = new GameScore();
+    // 値を設定
+    gameScore.set("name", name);
+    gameScore.set("score", score);
+    // 保存を実施
+    gameScore.save()
+        .then(function () {
+            // 保存に成功した場合の処理
+            console.log("保存に成功しました。");
+        })
+        .catch(function (error) {
+            // 保存に失敗した場合の処理
+            console.log("保存に失敗しました。エラー:" + error);
+        });
+
+
+
+
+
+
+
+
+
+
+
     // ********************************************************
 }
 
 // タイマー
 function countTime(time) {
-    if (time > 0){
+    if (time > 0) {
         if (time >= 11) {
             this.tapFlag = false;
-            $("#list-page p").html(String(time-10));
+            $("#list-page p").html(String(time - 10));
         } else if (time == 10) {
             this.tapFlag = true;
             $("#list-page p").html("スタート！");
@@ -68,24 +85,24 @@ function countTime(time) {
         }
         this.countTimer -= 1;
         // １秒後にcountTime()を呼び出す
-        setTimeout("countTime(countTimer)",1000);
+        setTimeout("countTime(countTimer)", 1000);
     } else {
         this.tapFlag = false;
         $("#list-page p").html("タイムアップ！");
         imputName(this.counter);
-    }    
+    }
 }
 
 // 名前入力アラートの表示
-function imputName(count){
+function imputName(count) {
     // 入力アラートを表示
-	var name = window.prompt("名前を入力してください", "");
+    var name = window.prompt("名前を入力してください", "");
     if (name == null || name == "") {
-        $("#list-page p").html("保存がキャンセルされました");        
+        $("#list-page p").html("保存がキャンセルされました");
     } else {
         // スコアと入力した名前を保存
         saveScore(name, count);
-        $("#list-page p").html(name + "さんのスコアは" + String(count) + "連打でした"); 
+        $("#list-page p").html(name + "さんのスコアは" + String(count) + "連打でした");
     }
     // ボタンの有効化
     document.gameForm.start.disabled = false;
