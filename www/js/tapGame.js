@@ -38,7 +38,7 @@ function startGame() {
 
 // 【mBaaS】データの保存
 function saveScore(name, score) {
-    
+
     // 保存先クラスを作成
     var GameScore = ncmb.DataStore("GameScore");
     // クラスインスタンスを生成
@@ -56,20 +56,19 @@ function saveScore(name, score) {
             // 保存に失敗した場合の処理
             console.log("保存に失敗しました。エラー:" + error);
         });
-
-
-
-
-
-
-
-
-
-
-
     
-}
 
+
+
+
+
+
+
+
+
+
+
+}
 // タイマー
 function countTime(time) {
     if (time > 0) {
