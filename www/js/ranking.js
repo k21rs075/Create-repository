@@ -31,7 +31,7 @@ function checkRanking() {
         .catch(function (error) {
             // 検索に失敗した場合の処理
             console.log("検索に失敗しました。エラー:" + error);
-        }
+        });
     
     
     
@@ -43,8 +43,8 @@ function checkRanking() {
     
     
     
-    // ******************************************************
-}
+    
+
 
 // テーブルにデータを設定
 function setData(array) {
@@ -65,3 +65,4 @@ function setData(array) {
 
 
 
+}
